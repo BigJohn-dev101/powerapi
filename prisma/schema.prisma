@@ -1,0 +1,33 @@
+// This is the Prisma schema file for your project.
+// Define your database models here.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Change to your database provider if needed
+  url      = env("DATABASE_URL")
+}
+
+model Claims {
+  claimID     String   @id
+  claimType   ClaimType
+  Priority    PriorityLevel
+  Description String
+  createdOn   DateTime @default(now())
+}
+
+enum ClaimType {
+  Home
+  Auto
+  Health
+  Property
+  Life
+}
+
+enum PriorityLevel {
+  Low
+  Medium
+  High
+}
